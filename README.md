@@ -13,18 +13,16 @@ Welcome to the source code of my personal portfolio website — a visual and int
 
 Coming soon — or just open `index.html` in your browser to preview locally.
 
-## 🗂️ Project Structure
+ ## 🗂️ Project Structure
 
+```text
 online-portfolio/
-├── index.html # Main HTML file
-├── images/ # Portfolio assets
-│ └── SRE-image.png
-├── LICENSE # Creative Commons license
-└── README.md # This file
-
-pgsql
-Copy
-Edit
+├── index.html              # Main HTML file
+├── images/                 # Portfolio assets
+│   └── SRE-image.png
+├── LICENSE                 # Creative Commons license
+└── README.md               # This file
+```
 
 ## 🧪 Tech Stack
 
