@@ -1,0 +1,212 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: url('../images/blur-background-2.png') center/cover no-repeat fixed;
+    background-color: #121212; /* Dark background for contrast */
+    font-size: 2rem; /* Adjust font size as needed */
+    color: #ffffff;
+    text-shadow: 0 1px 4px rgba(45, 43, 47, 0.972);
+    font-family: 'Oswald', sans-serif; /* Use your desired font */
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    margin-bottom: 1.2rem; /* Spacing between lines */
+}
+
+.container {
+    position: relative;
+    height: 100vh; /* Full viewport height */
+    overflow: hidden; /* Prevent overflow from floating images */
+}
+
+
+.floating-images {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.floating-image {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+
+  /* Feathered vignette mask */
+  -webkit-mask-image: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 1) 40%,
+    rgba(0, 0, 0, 0.1) 65%,
+    rgba(0, 0, 0, 0.01) 80%,
+    transparent 100%
+  );
+  mask-image: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 1) 40%,
+    rgba(0, 0, 0, 0.1) 65%,
+    rgba(0, 0, 0, 0.01) 80%,
+    transparent 100%
+  );
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+
+  box-shadow:
+    0 0 10px 30px rgba(255, 255, 255, 0.9),   /* Big, bright outer halo */
+    0 0 10px 30px rgba(255, 255, 255, 0.8),   /* Mid-layer softness */
+    0 0 10px 30px rgba(255, 255, 255, 0.6),   /* Tight glow near edge */
+    inset 0 0 10px rgba(255, 255, 255, 0.7);  /* Glow from within */
+
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 255, 255, 0.6) 100%,
+    rgba(255, 255, 255, 0.2) 100%,
+    transparent 10%
+  );
+
+  backdrop-filter: blur(100px);
+  filter: brightness(1) saturate(1.1) drop-shadow(0 0 25px rgba(255, 255, 255, 0.5));
+  
+  animation: fadeIn 2s ease forwards;
+  transition: transform 0.05s ease, box-shadow 0.05s ease;
+  z-index: 2;
+  cursor: pointer;
+
+  transform: translate(var(--x, 0px), var(--y, 0px)) scale(1);
+}
+
+.floating-image:hover {
+  transform: translate(var(--x, 0px), var(--y, 0px)) scale(2);
+  filter: brightness(1.2) saturate(1);
+  box-shadow: 0 0 60px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.4);
+  z-index: 1000;
+}
+
+.center-text {
+    position: absolute;
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust for centering */
+    z-index: 3; /* Ensure text is above floating images */
+    text-align: center;
+    max-width: 800px; /* Limit text width */
+    padding: 2rem 1rem; /* Padding around text */
+}
+
+.intro-line {
+    opacity: 0; /* Initially hidden */
+    transition: opacity 4s ease; /* Smooth transition for appearance */
+    font-size: 2.5rem; /* Adjust font size as needed */
+    color: #ffffff; /* White text */
+    text-align: center;
+    font-weight: 500;
+    line-height: 1.6;
+
+    /* Outline effect using text-shadow */
+    text-shadow:
+        -1px -1px 2px rgba(87, 87, 87, 0.589),
+        1px -1px 2px rgba(87, 87, 87, 0.589),
+        -1px  1px 2px rgba(87, 87, 87, 0.589),
+        1px  1px 2px rgba(87, 87, 87, 0.589);
+    
+    font-family: 'Cormorant Garamond', serif; /* Use your desired font */
+    letter-spacing: 0.5px;
+    margin-bottom: 1rem; /* Spacing between lines */
+}
+
+.intro-line.visible {
+    opacity: 1; /* Fully visible */
+}
+
+.bottom-line {
+    opacity: 0; /* Initially hidden */
+    transition: opacity 1s ease; /* Smooth transition for appearance */
+    font-size: 1rem; /* Adjust font size as needed */
+    color: #ffffff; /* White text */
+    text-align: center;
+
+    /* Outline effect using text-shadow */
+    text-shadow:
+        -1px -1px 2px rgba(87, 87, 87, 0.589),
+        1px -1px 2px rgba(87, 87, 87, 0.589),
+        -1px  1px 2px rgba(87, 87, 87, 0.589),
+        1px  1px 2px rgba(87, 87, 87, 0.589);
+    
+    font-family: 'Cormorant Garamond', serif; /* Use your desired font */
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    line-height: 1.6;
+    margin-bottom: 1rem; /* Spacing between lines */
+}
+
+.bottom-line.visible {
+    opacity: 1; /* Fully visible */
+}
+
+/* Modal styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Fixed position */
+    z-index: 1000; /* Above all other content */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+}
+
+.modal-content {
+    position: absolute; /* Position modal content */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust for centering */
+    max-width: 90%; /* Limit max width */
+    max-height: 90%; /* Limit max height */
+}
+
+.close {
+    position: absolute; /* Position close button */
+    top: 20px; /* Distance from top */
+    right: 30px; /* Distance from right */
+    color: white; /* Close button color */
+    font-size: 40px; /* Close button size */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+.snowfall {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  background-image: url('../images/snowfall-bg.png'); /* light transparent snowflake png */
+  animation: snowfall 20s linear infinite;
+  opacity: 0.3;
+}
+
+.fade-slide-up {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeSlideUp 0.8s ease-out forwards;
+}
+
+@keyframes fadeSlideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes snowfall {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 1000px;
+  }
+}
