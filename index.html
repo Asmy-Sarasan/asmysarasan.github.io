@@ -32,7 +32,7 @@
         }
         
         .hero-bg {
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.8)), url('../images/hero-bg.png');
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.8)), url('images/hero-bg.png');
             background-size: cover;
             background-position: center;
         }
@@ -62,29 +62,13 @@
     </style>
 </head>
 <body class="min-h-screen">
-    <!-- Navigation -->
-    <!-- <nav class="fixed top-0 left-0 w-full bg-gradient-to-b from-black to-transparent z-50 p-4 flex justify-between items-center">
-        <div class="flex items-center space-x-8">
-            <ul class="hidden md:flex space-x-6">
-                <li><a href="#home" class="nav-item text-white hover:text-purple-300 transition">Home</a></li>
-                <li><a href="#projects" class="nav-item text-white hover:text-purple-300 transition">Certifications</a></li>
-                <li><a href="#skills" class="nav-item text-white hover:text-purple-300 transition">Skills</a></li>
-                <li><a href="about-me.html" class="nav-item text-white hover:text-purple-300 transition">About</a></li>
-                <li><a href="#contact" class="nav-item text-white hover:text-purple-300 transition">Contact</a></li>
-            </ul>
-        </div>
-        <button class="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-medium py-2 px-6 rounded-full transition-all duration-300 transform hover:scale-105">
-            <a href="#contact">Contact Me</a>
-        </button>
-    </nav> -->
-
     <!-- Top Toolbar -->
     <nav class="fixed top-0 left-0 w-full bg-black bg-opacity-70 backdrop-blur-md z-50 px-8 py-4 flex justify-between items-center shadow-md">
             <ul class="hidden md:flex space-x-8 text-white text-sm font-medium">
                 <li><a href="#home" class="hover:text-purple-300 transition">Home</a></li>
                 <li><a href="#certs" class="hover:text-purple-300 transition">Certifications</a></li>
                 <li><a href="#skills" class="hover:text-purple-300 transition">Skills</a></li>
-                <li><a href="about-me.html" class="hover:text-purple-300 transition">About</a></li>
+                <li><a href="src/about-me.html" class="hover:text-purple-300 transition">About</a></li>
                 <li><a href="#contact" class="hover:text-purple-300 transition">Contact</a></li>
             </ul>
 
@@ -100,7 +84,7 @@
                 <h1 class="text-4xl md:text-5xl font-bold mb-4">Hello, I'm <span class="gradient-text">Asmy Sarasan</span></h1>
                 <div class="text-lg text-gray-300 space-y-4 mb-6">
                     <p>I'm a curious engineer who started off building REST APIs and Swagger docs, dabbled in QA, and now wrangle large-scale systems with a dash of SRE magic to keep things from catching fire.</p> 
-                    <p>Outside of tech, I'm training to look like I walked out of <a href="https://www.arcane.com/en-us/" class="text-purple-400 hover:underline" target="_blank" rel="noopener noreferrer">Arcane</a>, getting my hands dirty in the garden, and parenting our high energy Doberman, Genji <a href="../genji/src/index.html" class="text-purple-400 hover:underline">(Click here to meet him)</a>.</p>
+                    <p>Outside of tech, I'm training to look like I walked out of <a href="https://www.arcane.com/en-us/" class="text-purple-400 hover:underline" target="_blank" rel="noopener noreferrer">Arcane</a>, getting my hands dirty in the garden, and parenting our high energy Doberman, Genji <a href="genji/src/index.html" class="text-purple-400 hover:underline">(Click here to meet him)</a>.</p>
                     <p>Thanks for stopping by, enjoy the scroll! 🚀</p>
                 </div>
 
@@ -109,7 +93,7 @@
                         <a href="#experience">Work experience</a>
                     </button>
                     <button class="bg-transparent border-2 border-white hover:bg-white hover:text-black text-white font-medium py-3 px-8 rounded-full transition">
-                        <a href="about-me.html">About me</a>
+                        <a href="src/about-me.html">About me</a>
                     </button>
                 </div>
             </div>
@@ -124,7 +108,7 @@
             <div class="relative">
                 <div class="flex overflow-x-auto pb-8 space-x-6 scrollbar-hide">
                     <div class="flex-shrink-0 w-90 md:w-80 h-50 rounded-xl overflow-hidden content-card cursor-pointer relative group">
-                        <img src="../images/SRE-image.png" alt="Featured SRE project dashboard interface with dark theme and analytics charts" class="w-full h-full object-cover"/>
+                        <img src="images/SRE-image.png" alt="Featured SRE project dashboard interface with dark theme and analytics charts" class="w-full h-full object-cover"/>
                         <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                             <div>
                                 <h3 class="text-white font-bold text-lg">Site Reliability Engineering</h3>
@@ -138,7 +122,7 @@
                         </div>
                     </div>
                     <div class="flex-shrink-0 w-90 md:w-80 h-50 rounded-xl overflow-hidden content-card cursor-pointer relative group">
-                        <img src="../images/QA-image.png" alt="Featured SRE project dashboard interface with dark theme and analytics charts" class="w-full h-full object-cover"/>
+                        <img src="images/QA-image.png" alt="Featured SRE project dashboard interface with dark theme and analytics charts" class="w-full h-full object-cover"/>
                         <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                             <div>
                                 <h3 class="text-white font-bold text-lg">QA/Test Engineer</h3>
@@ -152,7 +136,7 @@
                         </div>
                     </div>
                     <div class="flex-shrink-0 w-90 md:w-80 h-50 rounded-xl overflow-hidden content-card cursor-pointer relative group">
-                        <img src="../images/Backend-image.png" alt="Featured SRE project dashboard interface with dark theme and analytics charts" class="w-full h-full object-cover"/>
+                        <img src="images/Backend-image.png" alt="Featured SRE project dashboard interface with dark theme and analytics charts" class="w-full h-full object-cover"/>
                         <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                             <div>
                                 <h3 class="text-white font-bold text-lg">Software Developer</h3>
@@ -165,7 +149,7 @@
                         </div>
                     </div>
                     <div class="flex-shrink-0 w-90 md:w-80 h-50 rounded-xl overflow-hidden content-card cursor-pointer relative group">
-                        <img src="../images/DevOps-image.png" alt="Featured SRE project dashboard interface with dark theme and analytics charts" class="w-full h-full object-cover"/>
+                        <img src="images/DevOps-image.png" alt="Featured SRE project dashboard interface with dark theme and analytics charts" class="w-full h-full object-cover"/>
                         <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                             <div>
                                 <h3 class="text-white font-bold text-lg">DevOps Analyst</h3>
@@ -188,7 +172,7 @@
                 <div class="flex overflow-x-auto pb-8 space-x-4 scrollbar-hide">
                     <div class="flex-shrink-0 w-48 h-72 rounded-lg overflow-hidden content-card cursor-pointer relative group">
                         <a href="https://www.coursera.org/account/accomplishments/verify/A81WH8SSGWL2" target="_blank" rel="noopener noreferrer">
-                            <img src="../images/cloud-cert.png" alt="Google cloud configuration and cloud management cert" class="w-full h-full object-cover"/>
+                            <img src="images/cloud-cert.png" alt="Google cloud configuration and cloud management cert" class="w-full h-full object-cover"/>
                             <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                                 <div>
                                     <h3 class="text-white font-bold">Configuration and Cloud Management</h3>
@@ -198,7 +182,7 @@
                     </div>
                     <div class="flex-shrink-0 w-48 h-72 rounded-lg overflow-hidden content-card cursor-pointer relative group">
                         <a href="https://www.coursera.org/account/accomplishments/verify/8D9PAX5XOK9K" target="_blank" rel="noopener noreferrer">
-                            <img src="../images/sre-cert.png" alt="Google SRE Culture certificate" class="w-full h-full object-cover"/>
+                            <img src="images/sre-cert.png" alt="Google SRE Culture certificate" class="w-full h-full object-cover"/>
                             <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                                 <div>
                                     <h3 class="text-white font-bold">Google SRE Culture</h3>
@@ -208,7 +192,7 @@
                     </div>
                     <div class="flex-shrink-0 w-48 h-72 rounded-lg overflow-hidden content-card cursor-pointer relative group">
                         <a href="https://www.coursera.org/account/accomplishments/verify/JSZB46XGGWJC" target="_blank" rel="noopener noreferrer">
-                            <img src="../images/genai-cert.png" alt="IBM Gen AI certificate" class="w-full h-full object-cover"/>
+                            <img src="images/genai-cert.png" alt="IBM Gen AI certificate" class="w-full h-full object-cover"/>
                             <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                                 <div>
                                     <h3 class="text-white font-bold">Gen AI: Introductions and Applications</h3>
@@ -218,7 +202,7 @@
                     </div>
                     <div class="flex-shrink-0 w-48 h-72 rounded-lg overflow-hidden content-card cursor-pointer relative group">
                         <a href="https://www.credly.com/badges/b81561f8-8ab8-4020-875a-10e293456f89" target="_blank" rel="noopener noreferrer">
-                            <img src="../images/design-cert.png" alt="IBM Enterprise thinking certificate" class="w-full h-full object-cover"/>
+                            <img src="images/design-cert.png" alt="IBM Enterprise thinking certificate" class="w-full h-full object-cover"/>
                             <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                                 <div>
                                     <h3 class="text-white font-bold">Enterprise Design Thinking Practitioner</h3>
@@ -228,7 +212,7 @@
                     </div>
                     <div class="flex-shrink-0 w-48 h-72 rounded-lg overflow-hidden content-card cursor-pointer relative group">
                         <a href="https://www.credly.com/badges/9583857a-1729-4a44-95b6-7f4c5ef52702/linked_in_profile" target="_blank" rel="noopener noreferrer">
-                            <img src="../images/watson-cert.JPEG" alt="IBM Watson Data Platform certificate" class="w-full h-full object-cover"/>
+                            <img src="images/watson-cert.JPEG" alt="IBM Watson Data Platform certificate" class="w-full h-full object-cover"/>
                             <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                                 <div>
                                     <h3 class="text-white font-bold">Watson Data Platform Foundations</h3>
