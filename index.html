@@ -59,6 +59,134 @@
             background: #b088f9;
             border-radius: 4px;
         }
+
+        /* Modal specific styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(4px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .modal-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: linear-gradient(145deg, #1e1e1e, #252525);
+            padding: 0;
+            border-radius: 1rem;
+            max-width: 900px;
+            width: 95%;
+            max-height: 90vh;
+            overflow: hidden;
+            position: relative;
+            transform: translateY(-20px) scale(0.95);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            border: 1px solid rgba(179, 139, 249, 0.2);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-overlay.open .modal-content {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+        }
+
+        .modal-header {
+            background: linear-gradient(90deg, #a18cd1 0%, #fbc2eb 100%);
+            padding: 1.5rem 2rem;
+            position: relative;
+        }
+
+        .modal-body {
+            padding: 2rem;
+            max-height: calc(90vh - 120px);
+            overflow-y: auto;
+        }
+
+        .modal-close-button {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            font-size: 1.5rem;
+            color: #ffffff;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(90deg);
+        }
+
+        .modal-section {
+            background: rgba(179, 139, 249, 0.05);
+            border: 1px solid rgba(179, 139, 249, 0.1);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-section-title {
+            color: #a18cd1;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .modal-section-title::before {
+            content: '';
+            width: 4px;
+            height: 20px;
+            background: linear-gradient(90deg, #a18cd1 0%, #fbc2eb 100%);
+            border-radius: 2px;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .tech-tag {
+            background: linear-gradient(135deg, rgba(179, 139, 249, 0.1), rgba(251, 194, 235, 0.1));
+            border: 1px solid rgba(179, 139, 249, 0.3);
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            font-size: 0.875rem;
+            color: #e0e0e0;
+            transition: all 0.2s ease;
+        }
+
+        .tech-tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(179, 139, 249, 0.2);
+        }
     </style>
 </head>
 <body class="min-h-screen">
@@ -107,7 +235,8 @@
             <h2 class="text-2xl font-bold mb-6">Today's picks</h2>
             <div class="relative">
                 <div class="flex overflow-x-auto pb-8 space-x-6 scrollbar-hide">
-                    <div class="flex-shrink-0 w-90 md:w-80 h-50 rounded-xl overflow-hidden content-card cursor-pointer relative group">
+                    <!-- SRE Card -->
+                    <div class="flex-shrink-0 w-90 md:w-80 h-50 rounded-xl overflow-hidden content-card cursor-pointer relative group" onclick="openModal('sreModal')">
                         <img src="Images/SRE-image.png" alt="Featured SRE project dashboard interface with dark theme and analytics charts" class="w-full h-full object-cover"/>
                         <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                             <div>
@@ -121,7 +250,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex-shrink-0 w-90 md:w-80 h-50 rounded-xl overflow-hidden content-card cursor-pointer relative group">
+                    <!-- QA Card -->
+                    <div class="flex-shrink-0 w-90 md:w-80 h-50 rounded-xl overflow-hidden content-card cursor-pointer relative group" onclick="openModal('qaModal')">
                         <img src="Images/QA-image.png" alt="Featured SRE project dashboard interface with dark theme and analytics charts" class="w-full h-full object-cover"/>
                         <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                             <div>
@@ -135,7 +265,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex-shrink-0 w-90 md:w-80 h-50 rounded-xl overflow-hidden content-card cursor-pointer relative group">
+                    <!-- Backend Card -->
+                    <div class="flex-shrink-0 w-90 md:w-80 h-50 rounded-xl overflow-hidden content-card cursor-pointer relative group" onclick="openModal('backendModal')">
                         <img src="Images/Backend-image.png" alt="Featured SRE project dashboard interface with dark theme and analytics charts" class="w-full h-full object-cover"/>
                         <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                             <div>
@@ -148,7 +279,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex-shrink-0 w-90 md:w-80 h-50 rounded-xl overflow-hidden content-card cursor-pointer relative group">
+                    <!-- DevOps Card -->
+                    <div class="flex-shrink-0 w-90 md:w-80 h-50 rounded-xl overflow-hidden content-card cursor-pointer relative group" onclick="openModal('devopsModal')">
                         <img src="Images/DevOps-image.png" alt="Featured SRE project dashboard interface with dark theme and analytics charts" class="w-full h-full object-cover"/>
                         <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                             <div>
@@ -372,6 +504,315 @@
         </div>
     </footer>
 
+    <!-- Modals for Featured Collection Items -->
+
+    <!-- SRE Modal -->
+    <div id="sreModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="text-2xl font-bold text-white">Site Reliability Engineering (SRE)</h3>
+                <button class="modal-close-button" onclick="closeModal('sreModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h4 class="modal-section-title">Overview</h4>
+                    <p class="text-gray-300 leading-relaxed">
+                        Site Reliability Engineering (SRE) is a discipline that incorporates aspects of software engineering and applies them to infrastructure and operations problems. The main goals are to create highly reliable and scalable software systems that can handle massive scale while maintaining excellent user experience.
+                    </p>
+                </div>
+
+                <div class="modal-section">
+                    <h4 class="modal-section-title">Key Responsibilities</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-gray-800 rounded-lg p-4 border-l-4 border-purple-400">
+                            <h5 class="font-semibold text-purple-300 mb-2">Monitoring & Alerting</h5>
+                            <p class="text-gray-400 text-sm">Implementing comprehensive monitoring systems and intelligent alerting strategies</p>
+                        </div>
+                        <div class="bg-gray-800 rounded-lg p-4 border-l-4 border-blue-400">
+                            <h5 class="font-semibold text-blue-300 mb-2">Change Management</h5>
+                            <p class="text-gray-400 text-sm">Oversaw and executed safe, compliant system updates through live upgrades, capacity improvements, and regular maintenance to keep GitHub running smoothly</p>
+                        </div>
+                        <div class="bg-gray-800 rounded-lg p-4 border-l-4 border-green-400">
+                            <h5 class="font-semibold text-green-300 mb-2">Automation</h5>
+                            <p class="text-gray-400 text-sm">Automating GitHub Enterprise infrastructure to keep over 40 servers consistent and up to date</p>
+                        </div>
+                        <div class="bg-gray-800 rounded-lg p-4 border-l-4 border-red-400">
+                            <h5 class="font-semibold text-red-300 mb-2">Incident Response</h5>
+                            <p class="text-gray-400 text-sm">Leading high severity incident response for 65K+ users and conducting thorough post-mortems to learn from incidents</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <h4 class="modal-section-title">Technologies & Tools</h4>
+                    <div class="tech-grid">
+                        <div class="tech-tag">Linux (RHEL)</div>
+                        <div class="tech-tag">Ansible</div>
+                        <div class="tech-tag">Terraform</div>
+                        <div class="tech-tag">Jenkins</div>
+                        <div class="tech-tag">Docker</div>
+                        <div class="tech-tag">Kubernetes</div>
+                        <div class="tech-tag">Splunk</div>
+                        <div class="tech-tag">Dynatrace</div>
+                        <div class="tech-tag">New Relic</div>
+                        <div class="tech-tag">OpenTelemetry</div>
+                        <div class="tech-tag">IBM Cloud</div>
+                        <div class="tech-tag">Python</div>
+                        <div class="tech-tag">Shell</div>
+                        <div class="tech-tag">YAML</div>
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <h4 class="modal-section-title">Impact & Goals</h4>
+                    <div class="space-y-3">
+                        <div class="flex items-start space-x-3">
+                            <div class="w-2 h-2 bg-purple-400 rounded-full mt-2"></div>
+                            <p class="text-gray-300">Enhanced reliability and eliminated configuration drift across over 40 servers</p>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-2 h-2 bg-purple-400 rounded-full mt-2"></div>
+                            <p class="text-gray-300">Boosted GitHub performance and sped up delivery by 60% through scaling, maintenance, and support collaboration.</p>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-2 h-2 bg-purple-400 rounded-full mt-2"></div>
+                            <p class="text-gray-300">Showcased IBM GenAI assistant via live demos to boost developer productivity</p>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-2 h-2 bg-purple-400 rounded-full mt-2"></div>
+                            <p class="text-gray-300">Fostered a culture of reliability and continuous improvement</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- QA Modal -->
+    <div id="qaModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="text-2xl font-bold text-white">Front-end QA/Test Developer</h3>
+                <button class="modal-close-button" onclick="closeModal('sreModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h4 class="modal-section-title">Overview</h4>
+                    <p class="text-gray-300 leading-relaxed">
+                        As a Front-end QA/Test Developer at IBM, I focused on ensuring software quality, accelerating feedback cycles, and delivering smooth, reliable releases. My work combined automation, testing strategy, and close collaboration with development teams to improve both speed and quality in the release process.
+                    </p>
+                </div>
+
+                <div class="modal-section">
+                    <h4 class="modal-section-title">Key Responsibilities</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-gray-800 rounded-lg p-4 border-l-4 border-purple-400">
+                            <h5 class="font-semibold text-purple-300 mb-2">Test Automation</h5>
+                            <p class="text-gray-400 text-sm">Migrated the UI test suite from Selenium to Puppeteer, reducing execution time by 60% for faster developer feedback.</p>
+                        </div>
+                        <div class="bg-gray-800 rounded-lg p-4 border-l-4 border-blue-400">
+                            <h5 class="font-semibold text-blue-300 mb-2">Process Improvement</h5>
+                            <p class="text-gray-400 text-sm">Led daily scrums, prioritized defect resolution, and integrated tests into CI/CD pipelines, boosting release efficiency by 25%.</p>
+                        </div>
+                        <div class="bg-gray-800 rounded-lg p-4 border-l-4 border-green-400">
+                            <h5 class="font-semibold text-green-300 mb-2">Regression Testing</h5>
+                            <p class="text-gray-400 text-sm">Built automated regression tests for UI and REST APIs to maintain reliability across releases.</p>
+                        </div>
+                        <div class="bg-gray-800 rounded-lg p-4 border-l-4 border-orange-400">
+                            <h5 class="font-semibold text-orange-300 mb-2">Infrastructure Maintenance</h5>
+                            <p class="text-gray-400 text-sm">Managed Jenkins infrastructure, upgraded plugins, and implemented proactive job monitoring to detect issues early.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <h4 class="modal-section-title">Technologies & Tools</h4>
+                    <div class="tech-grid">
+                        <div class="tech-tag">Puppeteer</div>
+                        <div class="tech-tag">Selenium</div>
+                        <div class="tech-tag">JavaScript</div>
+                        <div class="tech-tag">Jenkins</div>
+                        <div class="tech-tag">CI/CD Pipelines</div>
+                        <div class="tech-tag">REST API Testing</div>
+                        <div class="tech-tag">Agile/Scrum</div>
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <h4 class="modal-section-title">Impact & Achievements</h4>
+                    <div class="space-y-3">
+                        <div class="flex items-start space-x-3">
+                            <div class="w-2 h-2 bg-purple-400 rounded-full mt-2"></div>
+                            <p class="text-gray-300">Cut UI testing time by 60%, accelerating delivery of new features.</p>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-2 h-2 bg-purple-400 rounded-full mt-2"></div>
+                            <p class="text-gray-300">Improved release pipeline efficiency by 25% through better integration of tests and workflows.</p>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-2 h-2 bg-purple-400 rounded-full mt-2"></div>
+                            <p class="text-gray-300">Maintained high reliability across web applications with robust automated regression suites.</p>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-2 h-2 bg-purple-400 rounded-full mt-2"></div>
+                            <p class="text-gray-300">Strengthened collaboration between QA and development for faster defect resolution and better product quality.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Backend Modal -->
+    <div id="backendModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="text-2xl font-bold text-white">Software Developer</h3>
+                <button class="modal-close-button" onclick="closeModal('backendModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h4 class="modal-section-title">Overview</h4>
+                    <p class="text-gray-300 leading-relaxed">
+                        As a Software Developer at IBM, I designed and implemented backend components, ensuring they were modular, maintainable, and aligned with high-level architecture designs. My work involved building reliable systems, validating functionality through thorough testing, and ensuring high performance throughout the development lifecycle.
+                    </p>
+                </div>
+
+                <div class="modal-section">
+                    <h4 class="modal-section-title">Core Responsibilities</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-gray-800 rounded-lg p-4 border-l-4 border-blue-400">
+                            <h5 class="font-semibold text-blue-300 mb-2">Backend Development</h5>
+                            <p class="text-gray-400 text-sm">Developed backend components based on functional programming specifications and architectural guidelines.</p>
+                        </div>
+                        <div class="bg-gray-800 rounded-lg p-4 border-l-4 border-green-400">
+                            <h5 class="font-semibold text-green-300 mb-2">System Reliability</h5>
+                            <p class="text-gray-400 text-sm">Built maintainable systems and resolved defects to ensure stability across releases.</p>
+                        </div>
+                        <div class="bg-gray-800 rounded-lg p-4 border-l-4 border-purple-400">
+                            <h5 class="font-semibold text-purple-300 mb-2">Testing & Validation</h5>
+                            <p class="text-gray-400 text-sm">Executed unit, integration, and functional tests to validate backend logic and performance.</p>
+                        </div>
+                        <div class="bg-gray-800 rounded-lg p-4 border-l-4 border-orange-400">
+                            <h5 class="font-semibold text-orange-300 mb-2">Defect Resolution</h5>
+                            <p class="text-gray-400 text-sm">Identified, tracked, and fixed bugs throughout the software development lifecycle.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <h4 class="modal-section-title">Technologies & Frameworks</h4>
+                    <div class="tech-grid">
+                        <div class="tech-tag">Java</div>
+                        <div class="tech-tag">JavaScript</div>
+                        <div class="tech-tag">Functional Programming</div>
+                        <div class="tech-tag">Unit Testing</div>
+                        <div class="tech-tag">Integration Testing</div>
+                        <div class="tech-tag">Agile Development</div>
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <h4 class="modal-section-title">Development Approach</h4>
+                    <div class="space-y-3">
+                        <div class="flex items-start space-x-3">
+                            <div class="w-2 h-2 bg-purple-400 rounded-full mt-2"></div>
+                            <p class="text-gray-300">Followed modular design principles for maintainability and scalability.</p>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-2 h-2 bg-purple-400 rounded-full mt-2"></div>
+                            <p class="text-gray-300">Implemented multiple levels of testing to ensure reliability and performance.</p>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-2 h-2 bg-purple-400 rounded-full mt-2"></div>
+                            <p class="text-gray-300">Collaborated with cross-functional teams to ensure smooth integration with other components.</p>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-2 h-2 bg-purple-400 rounded-full mt-2"></div>
+                            <p class="text-gray-300">Proactively addressed defects during all stages of the development lifecycle.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DevOps Modal -->
+    <div id="devopsModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="text-2xl font-bold text-white">DevOps Analyst Intern</h3>
+                <button class="modal-close-button" onclick="closeModal('devopsModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h4 class="modal-section-title">Overview</h4>
+                    <p class="text-gray-300 leading-relaxed">
+                        As a DevOps Analyst Intern at IBM, I supported multiple IBM Cloud services, including Apache Spark, by ensuring smooth deployments, stable production environments, and proactive monitoring. My work focused on maintaining service reliability through automation, patch management, and rapid incident resolution.
+                    </p>
+                </div>
+
+                <div class="modal-section">
+                    <h4 class="modal-section-title">Key Contributions</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-gray-800 rounded-lg p-4 border-l-4 border-green-400">
+                            <h5 class="font-semibold text-green-300 mb-2">Service Monitoring</h5>
+                            <p class="text-gray-400 text-sm">Monitored the health of IBM Cloud services with regression tests, routine checks, and automated alerts.</p>
+                        </div>
+                        <div class="bg-gray-800 rounded-lg p-4 border-l-4 border-blue-400">
+                            <h5 class="font-semibold text-blue-300 mb-2">Patch & Deployment</h5>
+                            <p class="text-gray-400 text-sm">Validated and deployed updates via IBM UrbanCode Deploy pipelines to keep systems secure and up to date.</p>
+                        </div>
+                        <div class="bg-gray-800 rounded-lg p-4 border-l-4 border-purple-400">
+                            <h5 class="font-semibold text-purple-300 mb-2">Incident Response</h5>
+                            <p class="text-gray-400 text-sm">Responded to service alerts and customer tickets, ensuring quick resolution to maintain uptime.</p>
+                        </div>
+                        <div class="bg-gray-800 rounded-lg p-4 border-l-4 border-orange-400">
+                            <h5 class="font-semibold text-orange-300 mb-2">Container Management</h5>
+                            <p class="text-gray-400 text-sm">Performed monthly reboots and maintenance of servers and Docker containers to optimize performance.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <h4 class="modal-section-title">Tools & Technologies</h4>
+                    <div class="tech-grid">
+                        <div class="tech-tag">IBM Cloud</div>
+                        <div class="tech-tag">Apache Spark</div>
+                        <div class="tech-tag">UrbanCode Deploy (UCD)</div>
+                        <div class="tech-tag">Docker</div>
+                        <div class="tech-tag">Linux (RHEL)</div>
+                        <div class="tech-tag">Regression Testing</div>
+                        <div class="tech-tag">Bash</div>
+                        <div class="tech-tag">Service Monitoring</div>
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <h4 class="modal-section-title">DevOps Approach</h4>
+                    <div class="space-y-3">
+                        <div class="flex items-start space-x-3">
+                            <div class="w-2 h-2 bg-purple-400 rounded-full mt-2"></div>
+                            <p class="text-gray-300">Proactively monitored cloud services to detect and prevent issues before they impacted customers.</p>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-2 h-2 bg-purple-400 rounded-full mt-2"></div>
+                            <p class="text-gray-300">Streamlined patching and deployment workflows for reliability and efficiency.</p>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-2 h-2 bg-purple-400 rounded-full mt-2"></div>
+                            <p class="text-gray-300">Maintained operational stability through regular maintenance of servers and containers.</p>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-2 h-2 bg-purple-400 rounded-full mt-2"></div>
+                            <p class="text-gray-300">Collaborated with teams to resolve incidents quickly and improve long-term service health.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Simple smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -384,7 +825,7 @@
             });
         });
         
-        // Card hover effects
+        // Card hover effects (existing)
         const cards = document.querySelectorAll('.content-card');
         cards.forEach(card => {
             card.addEventListener('mouseenter', () => {
@@ -398,7 +839,7 @@
             });
         });
         
-        // Contact form submission would go here
+        // Contact form submission (existing)
         const contactForm = document.querySelector('form');
         if (contactForm) {
             contactForm.addEventListener('submit', (e) => {
@@ -407,6 +848,41 @@
                 contactForm.reset();
             });
         }
+
+        // MODAL FUNCTIONS
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.add('open');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling background
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('open');
+                document.body.style.overflow = ''; // Restore scrolling
+            }
+        }
+
+        // Close modal when clicking outside the content
+        document.querySelectorAll('.modal-overlay').forEach(overlay => {
+            overlay.addEventListener('click', function(event) {
+                if (event.target === overlay) {
+                    closeModal(overlay.id);
+                }
+            });
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                document.querySelectorAll('.modal-overlay.open').forEach(openModal => {
+                    closeModal(openModal.id);
+                });
+            }
+        });
     </script>
 </body>
 </html>
